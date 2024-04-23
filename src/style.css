@@ -1,25 +1,3 @@
-/* nav {
-  border-bottom: 1px solid black;
-} */
-
-/* .crumbs ol {
-  list-style-type: none;
-  padding-left: 0;
-} */
-
-/* .crumb {
-  display: inline-block;
-} */
-
-/* .crumb a::after {
-  display: inline-block;
-  color: #000;
-  content: '>';
-  font-size: 80%;
-  font-weight: bold;
-  padding: 0 3px;
-} */
-
 .container {
   display: flex;
   justify-content: center;
@@ -41,7 +19,7 @@
 
 .offset-layer {
   animation-name: offset-layer;
-  animation-duration: 1s;
+  animation-duration: 0.3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
@@ -49,12 +27,12 @@
 
 @keyframes offset-layer {
   from {
-    /* top: 0px; */
-    top: -18px;
+    opacity: 0%;
   }
 
   to {
-    top: 18px;
+    transform: translateY(100%);
+    opacity: 100%;
   }
 }
 
