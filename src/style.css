@@ -23,6 +23,7 @@
 .container {
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .menu {
@@ -33,9 +34,10 @@
 
 .submenu {
   display: none;
+  position: absolute;
 }
 
-.submenu:hover {
+.submenu-item:hover {
   background-color: aqua;
 }
 
