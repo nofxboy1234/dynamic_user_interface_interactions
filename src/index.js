@@ -7,17 +7,25 @@ import './style.css';
 //   });
 // });
 
+const showMenu = function showMenu(menu) {
+  [...menu.children].forEach((submenu) => {
+    submenu.classList.add('visible');
+  });
+};
+
+const hideMenu = function hideMenu(menu) {
+  [...menu.children].forEach((submenu) => {
+    submenu.classList.remove('visible');
+  });
+};
+
 const menus = document.querySelectorAll('.menu');
 menus.forEach((menu) => {
-  menu.addEventListener('mouseover', (event) => {
-    [...menu.children].forEach((submenu) => {
-      submenu.classList.add('visible');
-    });
+  menu.addEventListener('mouseover', () => {
+    showMenu(menu);
   });
 
-  menu.addEventListener('mouseout', (event) => {
-    [...menu.children].forEach((submenu) => {
-      submenu.classList.remove('visible');
-    });
+  menu.addEventListener('mouseout', () => {
+    hideMenu(menu);
   });
 });
