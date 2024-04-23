@@ -36,7 +36,26 @@
   display: none;
   position: absolute;
   bottom: 0px;
-  z-index: 1;
+  z-index: -1;
+}
+
+.offset-layer {
+  animation-name: offset-layer;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes offset-layer {
+  from {
+    /* top: 0px; */
+    top: -18px;
+  }
+
+  to {
+    top: 18px;
+  }
 }
 
 .submenu-item:hover {
