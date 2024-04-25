@@ -1,20 +1,32 @@
 .container {
   display: flex;
   justify-content: center;
+  /* flex-direction: column; */
+}
+
+.menu-container {
   position: relative;
+
 }
 
 .menu {
   width: 100px;
   cursor: pointer;
-  /* text-align: center; */
+  z-index: 0;
+  background-color: fuchsia;
 }
 
 .submenu {
-  display: none;
+  /* display: none; */
   position: absolute;
+  
+  /* transform: translateY(-100%); */
   bottom: 0px;
-  z-index: 1;
+
+  z-index: -1;
+  width: 100px;
+  background-color: greenyellow;
+  border: 1px solid red;
 }
 
 .offset-layer {
@@ -27,18 +39,18 @@
 
 @keyframes offset-layer {
   from {
-    opacity: 0%;
+    /* opacity: 0%; */
   }
 
   to {
     transform: translateY(100%);
-    opacity: 100%;
+    /* opacity: 100%; */
   }
 }
 
-.submenu-item:hover {
+/* .submenu-item:hover {
   background-color: aqua;
-}
+} */
 
 .visible {
   display: block;

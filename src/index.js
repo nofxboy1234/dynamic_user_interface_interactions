@@ -1,26 +1,33 @@
 import './style.css';
 
-const showMenu = function showMenu(menu) {
-  [...menu.children].forEach((submenu) => {
-    submenu.classList.add('visible');
-    submenu.classList.add('offset-layer');
-  });
+const showSubmenu = function showSubmenu(submenu) {
+  submenu.classList.add('visible');
+  submenu.classList.add('offset-layer');
 };
 
-const hideMenu = function hideMenu(menu) {
-  [...menu.children].forEach((submenu) => {
-    submenu.classList.remove('visible');
-    submenu.classList.remove('offset-layer');
-  });
+const hideSubmenu = function hideSubmenu(submenu) {
+  submenu.classList.remove('visible');
+  submenu.classList.remove('offset-layer');
 };
 
-const menus = document.querySelectorAll('.menu');
-menus.forEach((menu) => {
+// const hideMenu = function hideMenu(menu) {
+//   [...menu.children].forEach((submenu) => {
+//     submenu.classList.remove('visible');
+//     submenu.classList.remove('offset-layer');
+//   });
+// };
+
+const menuContainers = document.querySelectorAll('.menu-container');
+menuContainers.forEach((menuContainer) => {
+  const menu = menuContainer.firstElementChild;
+  const submenu = [...menuContainer.children].find((element) =>
+    element.classList.contains('submenu'),
+  );
   menu.addEventListener('mouseover', () => {
-    showMenu(menu);
+    showSubmenu(submenu);
   });
 
   menu.addEventListener('mouseout', () => {
-    hideMenu(menu);
+    hideSubmenu(submenu);
   });
 });
