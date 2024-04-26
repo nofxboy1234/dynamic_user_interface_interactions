@@ -20,5 +20,7 @@ import {
 
 setupMenus();
 
-previous();
 setAutoAdvance(3000);
+previous();
+next();
+jump();
