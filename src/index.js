@@ -16,11 +16,6 @@ const hideSubMenu = function hideSubMenu(subMenu) {
   subMenu.classList.remove('offset-layer');
 };
 
-// const hello = function hello() {
-//   console.log(this);
-
-// };
-
 const menuContainers = document.querySelectorAll('.menu-container');
 menuContainers.forEach((menuContainer) => {
   const subMenu = [...menuContainer.children].find((element) =>
