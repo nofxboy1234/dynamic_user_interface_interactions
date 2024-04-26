@@ -1,6 +1,7 @@
 import './style.css';
 
 import setupMenus from './dropDownMenu';
+
 import {
   pictureFrame,
   slideShow,
@@ -10,4 +11,7 @@ import {
   jumpCircle,
 } from './carousel/components/carouselComponents';
 
+import { previous, next, jump, setTimer } from './carousel/logic/carouselLogic';
+
 setupMenus();
+previous();
