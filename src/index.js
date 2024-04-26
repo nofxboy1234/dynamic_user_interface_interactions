@@ -34,4 +34,10 @@ menuContainers.forEach((menuContainer) => {
     subMenu.classList.remove('layer-minus-1');
     subMenu.classList.add('layer-0');
   });
+
+  [...subMenu.children].forEach((subMenuItem) => {
+    subMenuItem.addEventListener('click', () => {
+      console.log(subMenuItem.textContent);
+    });
+  });
 });
