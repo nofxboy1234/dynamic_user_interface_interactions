@@ -1,7 +1,8 @@
 let slideIndex = 0;
 
 const previous = function previous() {
-  console.log('Show previous slide');
+  slideIndex -= 1;
+  console.log(`Show previous slide: ${slideIndex}`);
 };
 
 const next = function next() {
@@ -10,6 +11,7 @@ const next = function next() {
 };
 
 const jump = function jump(index) {
+  slideIndex = index;
   console.log(`Jump to slide ${index}`);
 };
 

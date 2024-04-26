@@ -23,4 +23,4 @@ setupMenus();
 setAutoAdvance(3000);
 previous();
 next();
-jump();
+jump(4);
