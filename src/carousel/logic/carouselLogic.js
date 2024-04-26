@@ -1,9 +1,12 @@
+let slideIndex = 0;
+
 const previous = function previous() {
   console.log('Show previous slide');
 };
 
 const next = function next() {
-  console.log('Show next slide');
+  slideIndex += 1;
+  console.log(`Show next slide: ${slideIndex}`);
 };
 
 const jump = function jump(index) {
