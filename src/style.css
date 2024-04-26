@@ -50,9 +50,9 @@
   }
 }
 
-/* .submenu-item:hover {
+.sub-menu-item:hover {
   background-color: aqua;
-} */
+}
 
 .visible {
   display: block;
