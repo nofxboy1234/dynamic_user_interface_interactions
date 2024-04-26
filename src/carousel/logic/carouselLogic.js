@@ -11,9 +11,11 @@ const jump = function jump() {
 };
 
 const setAutoAdvance = function setTimer(delay) {
-  setTimeout(() => {
-    console.log('Delayed for 3 seconds');
+  const intervalID = setInterval(() => {
+    next();
   }, delay);
+
+  return intervalID;
 };
 
 export { previous, next, jump, setAutoAdvance };
