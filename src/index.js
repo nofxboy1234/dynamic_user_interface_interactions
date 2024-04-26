@@ -2,14 +2,15 @@ import './style.css';
 
 const showSubMenu = function showSubMenu(event, subMenu) {
   console.log('showSubmenu');
+  subMenu.classList.add('layer-minus-1');
+  subMenu.classList.remove('layer-0');
+
   subMenu.classList.add('visible');
   subMenu.classList.add('offset-layer');
 };
 
 const hideSubMenu = function hideSubMenu(subMenu) {
   console.log('hideSubmenu');
-  subMenu.classList.add('layer-minus-1');
-  subMenu.classList.remove('layer-0');
 
   subMenu.classList.remove('visible');
   subMenu.classList.remove('offset-layer');
