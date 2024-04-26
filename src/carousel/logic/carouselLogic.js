@@ -1,12 +1,24 @@
+const maxIndex = 3;
+const minIndex = 0;
 let slideIndex = 0;
 
 const previous = function previous() {
   slideIndex -= 1;
+  
+  if (slideIndex < minIndex) {
+    slideIndex = maxIndex;
+  }
+
   console.log(`Show previous slide: ${slideIndex}`);
 };
 
 const next = function next() {
   slideIndex += 1;
+
+  if (slideIndex > maxIndex) {
+    slideIndex = minIndex;
+  }
+
   console.log(`Show next slide: ${slideIndex}`);
 };
 
