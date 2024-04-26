@@ -11,7 +11,14 @@ import {
   jumpCircle,
 } from './carousel/components/carouselComponents';
 
-import { previous, next, jump, setTimer } from './carousel/logic/carouselLogic';
+import {
+  previous,
+  next,
+  jump,
+  setAutoAdvance,
+} from './carousel/logic/carouselLogic';
 
 setupMenus();
+
 previous();
+setAutoAdvance(3000);

@@ -10,8 +10,10 @@ const jump = function jump() {
   console.log('jump()');
 };
 
-const setTimer = function setTimer() {
-  console.log('setTimer()');
+const setAutoAdvance = function setTimer(delay) {
+  setTimeout(() => {
+    console.log('Delayed for 3 seconds');
+  }, delay);
 };
 
-export { previous, next, jump, setTimer };
+export { previous, next, jump, setAutoAdvance };
