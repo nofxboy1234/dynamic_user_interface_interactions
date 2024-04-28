@@ -25,4 +25,4 @@ setupMenus();
 // previous();
 // jump(3);
 
-setAutoAdvance(5000);
+setAutoAdvance(1000);

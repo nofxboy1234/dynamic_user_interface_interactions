@@ -11,7 +11,8 @@ const previous = function previous() {
     slideIndex = maxIndex;
   }
 
-  console.log(`Show previous slide: ${slideIndex}`);
+  const slideShow = document.querySelector('.slide-show');
+  slideShow.style.transform = `translateX(${translateX.at(slideIndex)}px)`;
 };
 
 const next = function next() {
@@ -21,9 +22,6 @@ const next = function next() {
     slideIndex = minIndex;
   }
 
-  console.log(`Show next slide: ${slideIndex}`);
-
-  // Move slide-show left by 256px
   const slideShow = document.querySelector('.slide-show');
   slideShow.style.transform = `translateX(${translateX.at(slideIndex)}px)`;
 };
@@ -35,7 +33,8 @@ const jump = function jump(index) {
 
 const setAutoAdvance = function setTimer(delay) {
   const intervalID = setInterval(() => {
-    next();
+    // next();
+    previous()
   }, delay);
 
   return intervalID;
