@@ -2,14 +2,14 @@ import './style.css';
 
 import setupMenus from './dropDownMenu';
 
-import {
-  pictureFrame,
-  slideShow,
-  slide,
-  previousButton,
-  nextButton,
-  jumpCircle,
-} from './carousel/components/carouselComponents';
+// import {
+//   pictureFrame,
+//   slideShow,
+//   slide,
+//   previousButton,
+//   nextButton,
+//   jumpCircle,
+// } from './carousel/components/carouselComponents';
 
 import {
   previous,
@@ -20,9 +20,9 @@ import {
 
 setupMenus();
 
-next();
-next();
-previous();
-jump(3);
+// next();
+// next();
+// previous();
+// jump(3);
 
 setAutoAdvance(5000);
