@@ -28,13 +28,14 @@ const next = function next() {
 
 const jump = function jump(index) {
   slideIndex = index;
-  console.log(`Jump to slide ${index}`);
+
+  const slideShow = document.querySelector('.slide-show');
+  slideShow.style.transform = `translateX(${translateX.at(slideIndex)}px)`;
 };
 
 const setAutoAdvance = function setTimer(delay) {
   const intervalID = setInterval(() => {
-    // next();
-    previous()
+    next();
   }, delay);
 
   return intervalID;
