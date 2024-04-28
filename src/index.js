@@ -25,4 +25,4 @@ next();
 previous();
 jump(3);
 
-setAutoAdvance(3000);
+setAutoAdvance(5000);
