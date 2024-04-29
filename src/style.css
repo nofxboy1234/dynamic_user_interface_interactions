@@ -76,6 +76,8 @@
 
   width: 1024px;
   height: 256px;
+
+  transition: translate 1s ease-in-out;
 }
 
 .slide {

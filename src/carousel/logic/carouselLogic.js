@@ -23,7 +23,7 @@ const next = function next() {
     slideIndex = minIndex;
   }
 
-  slideShow.style.transform = `translateX(${translateX.at(slideIndex)}px)`;
+  slideShow.style.translate = `${translateX.at(slideIndex)}px`;
 };
 
 const jump = function jump(index) {

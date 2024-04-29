@@ -25,16 +25,16 @@ setupMenus();
 // previous();
 // jump(3);
 
-// setAutoAdvance(1000);
+setAutoAdvance(1000);
 
-setTimeout(() => {
-  jump(3);
-}, 1000);
+// setTimeout(() => {
+//   jump(3);
+// }, 1000);
 
-setTimeout(() => {
-  jump(1);
-}, 2000);
+// setTimeout(() => {
+//   jump(1);
+// }, 2000);
 
-setTimeout(() => {
-  jump(2);
-}, 3000);
+// setTimeout(() => {
+//   jump(2);
+// }, 3000);
