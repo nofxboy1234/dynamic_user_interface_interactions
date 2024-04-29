@@ -2,7 +2,9 @@ const maxIndex = 3;
 const minIndex = 0;
 
 let slideIndex = 0;
-const translateX = [0, -256, -256 * 2, -256 * 3];
+const translateX = [0, -256 * 1, -256 * 2, -256 * 3];
+
+const slideShow = document.querySelector('.slide-show');
 
 const previous = function previous() {
   slideIndex -= 1;
@@ -11,7 +13,6 @@ const previous = function previous() {
     slideIndex = maxIndex;
   }
 
-  const slideShow = document.querySelector('.slide-show');
   slideShow.style.transform = `translateX(${translateX.at(slideIndex)}px)`;
 };
 
@@ -22,14 +23,11 @@ const next = function next() {
     slideIndex = minIndex;
   }
 
-  const slideShow = document.querySelector('.slide-show');
   slideShow.style.transform = `translateX(${translateX.at(slideIndex)}px)`;
 };
 
 const jump = function jump(index) {
   slideIndex = index;
-
-  const slideShow = document.querySelector('.slide-show');
   slideShow.style.transform = `translateX(${translateX.at(slideIndex)}px)`;
 };
 
