@@ -31,7 +31,7 @@ const jump = function jump(index) {
   slideShow.style.transform = `translateX(${translateX.at(slideIndex)}px)`;
 };
 
-const setAutoAdvance = function setTimer(delay) {
+const setAutoAdvance = function setAutoAdvance(delay) {
   const intervalID = setInterval(() => {
     next();
   }, delay);
