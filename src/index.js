@@ -1,6 +1,6 @@
 import './style.css';
 
-import setupMenus from './dropDownMenu';
+// import setupMenus from './dropDownMenu';
 
 // import {
 //   pictureFrame,
@@ -11,30 +11,45 @@ import setupMenus from './dropDownMenu';
 //   jumpCircle,
 // } from './carousel/components/carouselComponents';
 
-import {
-  previous,
-  next,
-  jump,
-  setAutoAdvance,
-} from './carousel/logic/carouselLogic';
+// import {
+//   previous,
+//   next,
+//   jump,
+//   setAutoAdvance,
+// } from './carousel/logic/carouselLogic';
 
-setupMenus();
+// setupMenus();
+// setAutoAdvance(1000);
 
-// next();
-// next();
-// previous();
-// jump(3);
+const outer = document.querySelector('#outer');
+// outer.addEventListener('click', log);
+outer.addEventListener('click', log, { capture: true });
 
-setAutoAdvance(1000);
+const inner1 = document.querySelector('#inner-1');
+inner1.addEventListener('click', log);
 
-// setTimeout(() => {
-//   jump(3);
-// }, 1000);
+const inner2 = document.querySelector('#inner-2');
+const inner3 = document.querySelector('#inner-3');
 
-// setTimeout(() => {
-//   jump(1);
-// }, 2000);
+function log(event) {
+  console.log('\n');
+  console.log('**************');
+  console.log('event.target:');
+  console.log(event.target);
+  console.log('##############');
+  console.log('event.currentTarget:');
+  console.log(event.currentTarget);
+  console.log('##############');
+  console.log('this:');
+  console.log(this);
+  console.log('**************');
 
-// setTimeout(() => {
-//   jump(2);
-// }, 3000);
+  // if (this === outer) {
+  //   event.stopPropagation();
+  // }
+  // event.stopPropagation();
+}
+
+function log2(event) {
+  console.log('log2!');
+}
