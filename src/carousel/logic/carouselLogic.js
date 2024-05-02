@@ -35,15 +35,15 @@ const resetSlideIndex = () => {
   slideIndex = minIndex;
 };
 
-const toggleLastSlideClassOnAllNormalSlides = () => {
+const toggleLastSlideClassOnAllSlides = () => {
   const normalSlides = document.querySelectorAll('.slide');
   normalSlides.forEach((element) => {
     element.classList.toggle('last-slide');
   });
 };
 
-const translateSlideShow = () => {
-  slideShow.style.translate = '0px';
+const translateSlideShow = (value) => {
+  slideShow.style.translate = value;
 };
 
 slideShow.addEventListener('transitionend', () => {
@@ -51,10 +51,13 @@ slideShow.addEventListener('transitionend', () => {
   replaceSlideWithPlaceholderSlide();
 
   if (slideIndex > maxIndex) {
+    console.log('hello');
+
     removeAllPlaceholderSlides();
-    toggleLastSlideClassOnAllNormalSlides();
+    toggleLastSlideClassOnAllSlides();
     resetSlideIndex();
-    translateSlideShow();
+
+    translateSlideShow('0px');
   }
 });
 
@@ -62,7 +65,7 @@ const next = function next() {
   slideIndex += 1;
 
   const translateValue = `${-1 * slideIndex * translateDistance}px`;
-  slideShow.style.translate = translateValue;
+  translateSlideShow(translateValue);
 };
 
 const setAutoAdvance = function setAutoAdvance(delay) {

@@ -80,10 +80,9 @@
 
 #slide-show {
   display: flex;
-  /* justify-content: flex-end; */
-  transition: translate 1s ease-in-out;
+  transition: translate 0.5s ease-in-out;
 
-  /* width: calc(256px * 4); */
+  /* width: 1024px; */
 }
 
 .slide {
@@ -100,7 +99,7 @@
 
 .placeholder-slide {
   order: -1;
-  background-color: black;
+  background-color: rgb(158, 158, 158);
 }
 
 .last-slide {
