@@ -4,16 +4,26 @@ const maxIndex = 3;
 let slideIndex = 0;
 // const translateX = [0, -256 * 1, -256 * 2, -256 * 3, -256 * 4];
 const translateDistance = 256;
-
 const slideShow = document.querySelector('#slide-show');
+
+const slide0 = document.querySelector('#slide-0');
+const slide1 = document.querySelector('#slide-1');
+const slide2 = document.querySelector('#slide-2');
+const slide3 = document.querySelector('#slide-3');
+
+const slides = [slide0, slide1, slide2, slide3];
 
 slideShow.addEventListener('transitionend', () => {
   console.log('transitionend');
 
-  // const firstSlide = slideShowContainer.firstChild;
-  // slideShowContainer.removeChild(firstSlide);
-  // slideShowContainer.appendChild(firstSlide);
-  // slideShowContainer.lastChild.after(slideShowContainer.firstChild)
+  // const slideToAppend = slideShow.firstElementChild;
+  const slideToAppend = slides.at(slideIndex - 1);
+  slideToAppend.classList.toggle('last-slide');
+
+  const placeholderSlide = document.createElement('div');
+  placeholderSlide.classList.add('slide', 'placeholder-slide');
+  slideShow.appendChild(placeholderSlide);
+
   // slideIndex = minIndex;
 });
 
