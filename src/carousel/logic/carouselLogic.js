@@ -2,22 +2,24 @@ const maxIndex = 3;
 const minIndex = 0;
 
 let slideIndex = 0;
-const translateX = [0, -256 * 1, -256 * 2, -256 * 3, -256 * 4];
+// const translateX = [0, -256 * 1, -256 * 2, -256 * 3, -256 * 4];
+const translateDistance = 256;
 
 const slideShowContainer = document.querySelector('#slide-show-container');
 
-const slideShowLeft = document.querySelector('#slide-show-left');
-const slideShowRight = document.querySelector('#slide-show-right');
-const lastSlideShowAppended = slideShowRight;
+const slideShow1 = document.querySelector('#slide-show-1');
+const slideShow2 = document.querySelector('#slide-show-2');
+const slideShow3 = document.querySelector('#slide-show-3');
+const lastSlideShowAppended = slideShow2;
 
 const nextSlideShow = function nextSlideShow() {
   let slideShow;
   switch (lastSlideShowAppended) {
-    case slideShowLeft:
-      slideShow = slideShowRight;
+    case slideShow2:
+      slideShow = slideShow1;
       break;
-    case slideShowRight:
-      slideShow = slideShowLeft;
+    case slideShow3:
+      slideShow = slideShow2;
       break;
     default:
       break;
@@ -28,14 +30,15 @@ const nextSlideShow = function nextSlideShow() {
 
 slideShowContainer.addEventListener('transitionend', () => {
   if (slideIndex > maxIndex) {
-    slideShowContainer.appendChild(nextSlideShow());
-    slideIndex = minIndex;
+    // slideShowContainer.appendChild(nextSlideShow());
+    // slideIndex = minIndex;
   }
 });
 
 const next = function next() {
   slideIndex += 1;
-  slideShowContainer.style.translate = `${translateX.at(slideIndex)}px`;
+  const translateValue = `${-1 * slideIndex * translateDistance}px`;
+  slideShowContainer.style.translate = translateValue;
 };
 
 const setAutoAdvance = function setAutoAdvance(delay) {
