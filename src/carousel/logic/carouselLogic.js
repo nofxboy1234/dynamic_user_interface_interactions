@@ -12,25 +12,14 @@ const slideShow2 = document.querySelector('#slide-show-2');
 const slideShow3 = document.querySelector('#slide-show-3');
 const lastSlideShowAppended = slideShow2;
 
-const nextSlideShow = function nextSlideShow() {
-  let slideShow;
-  switch (lastSlideShowAppended) {
-    case slideShow2:
-      slideShow = slideShow1;
-      break;
-    case slideShow3:
-      slideShow = slideShow2;
-      break;
-    default:
-      break;
-  }
-
-  return slideShow;
-};
-
 slideShowContainer.addEventListener('transitionend', () => {
-  if (slideIndex > maxIndex) {
-    // slideShowContainer.appendChild(nextSlideShow());
+  console.log('transitionend');
+
+  if (slideIndex === maxIndex + 1) {
+    // const firstSlide = slideShowContainer.firstChild;
+    // slideShowContainer.removeChild(firstSlide);
+    // slideShowContainer.appendChild(firstSlide);
+    // slideShowContainer.lastChild.after(slideShowContainer.firstChild)
     // slideIndex = minIndex;
   }
 });

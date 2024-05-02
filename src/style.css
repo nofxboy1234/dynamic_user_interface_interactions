@@ -66,6 +66,7 @@
 
 .picture-frame-container {
   display: flex;
+  justify-content: center;
 }
 
 .picture-frame {
@@ -85,8 +86,8 @@
 .slide-show {
   display: flex;
 
-  width: 1024px;
-  height: 256px;
+  /* width: 1024px;
+  height: 256px; */
 }
 
 /* #slide-show-1 {
@@ -110,7 +111,7 @@
   height: 256px;
   font-size: 10rem;
 
-  border: 10px solid rgb(255, 174, 0);
+  /* border: 10px solid rgb(255, 174, 0); */
 }
 
 #slide-0 {
