@@ -13,31 +13,48 @@ const slide3 = document.querySelector('#slide-3');
 
 const slides = [slide0, slide1, slide2, slide3];
 
-slideShow.addEventListener('transitionend', () => {
-  console.log('transitionend');
-
-  // const slideToAppend = slideShow.firstElementChild;
-  const slideToAppend = slides.at(slideIndex - 1);
-  slideToAppend.classList.toggle('last-slide');
-
+const replaceSlideWithPlaceholderSlide = () => {
   const placeholderSlide = document.createElement('div');
   placeholderSlide.classList.add('slide', 'placeholder-slide');
   slideShow.appendChild(placeholderSlide);
+};
+
+const moveLastSlideToEnd = () => {
+  const slideToAppend = slides.at(slideIndex - 1);
+  slideToAppend.classList.toggle('last-slide');
+};
+
+const removeAllPlaceholderSlides = () => {
+  const placeholderSlides = document.querySelectorAll('.placeholder-slide');
+  placeholderSlides.forEach((element) => {
+    element.remove();
+  });
+};
+
+const resetSlideIndex = () => {
+  slideIndex = minIndex;
+};
+
+const toggleLastSlideClassOnAllNormalSlides = () => {
+  const normalSlides = document.querySelectorAll('.slide');
+  normalSlides.forEach((element) => {
+    element.classList.toggle('last-slide');
+  });
+};
+
+const translateSlideShow = () => {
+  slideShow.style.translate = '0px';
+};
+
+slideShow.addEventListener('transitionend', () => {
+  moveLastSlideToEnd();
+  replaceSlideWithPlaceholderSlide();
 
   if (slideIndex > maxIndex) {
-    slideIndex = minIndex;
-
-    const placeholderSlides = document.querySelectorAll('.placeholder-slide');
-    placeholderSlides.forEach((element) => {
-      element.remove();
-    });
-
-    const normalSlides = document.querySelectorAll('.slide');
-    normalSlides.forEach((element) => {
-      element.classList.toggle('last-slide');
-    });
-
-    slideShow.style.translate = '0px';
+    resetSlideIndex();
+    removeAllPlaceholderSlides();
+    toggleLastSlideClassOnAllNormalSlides();
+    translateSlideShow();
   }
 });
 
