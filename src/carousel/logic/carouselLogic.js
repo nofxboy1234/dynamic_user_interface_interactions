@@ -24,11 +24,26 @@ slideShow.addEventListener('transitionend', () => {
   placeholderSlide.classList.add('slide', 'placeholder-slide');
   slideShow.appendChild(placeholderSlide);
 
-  // slideIndex = minIndex;
+  if (slideIndex > maxIndex) {
+    slideIndex = minIndex;
+
+    const placeholderSlides = document.querySelectorAll('.placeholder-slide');
+    placeholderSlides.forEach((element) => {
+      element.remove();
+    });
+
+    const normalSlides = document.querySelectorAll('.slide');
+    normalSlides.forEach((element) => {
+      element.classList.toggle('last-slide');
+    });
+
+    slideShow.style.translate = '0px';
+  }
 });
 
 const next = function next() {
   slideIndex += 1;
+
   const translateValue = `${-1 * slideIndex * translateDistance}px`;
   slideShow.style.translate = translateValue;
 };

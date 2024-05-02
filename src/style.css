@@ -80,7 +80,7 @@
 
 #slide-show {
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   transition: translate 1s ease-in-out;
 
   /* width: calc(256px * 4); */
