@@ -64,14 +64,14 @@
 
 .picture-frame {
   display: flex;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   width: 256px;
   height: 256px;
   border: 5px solid rgb(0, 0, 0);
 }
 
-.slide-show-container {
+#slide-show-container {
   display: flex;
   transition: translate 1s ease-in-out;
 }
@@ -81,6 +81,14 @@
 
   width: 1024px;
   height: 256px;
+}
+
+#slide-show-left {
+  border: 10px solid red;
+}
+
+#slide-show-right {
+  border: 10px solid rgb(0, 47, 255);
 }
 
 .slide {
@@ -107,10 +115,4 @@
 
 #slide-3 {
   background-color: rgb(0, 255, 98);
-}
-
-.inner {
-  width: 100px;
-  height: 100px;
-  border: 1px solid red;
 }
