@@ -78,29 +78,10 @@
   border: 10px solid rgb(0, 0, 0);
 }
 
-#slide-show-container {
+#slide-show {
   display: flex;
   transition: translate 1s ease-in-out;
 }
-
-.slide-show {
-  display: flex;
-
-  /* width: 1024px;
-  height: 256px; */
-}
-
-/* #slide-show-1 {
-  border: 10px solid red;
-}
-
-#slide-show-2 {
-  border: 10px solid green;
-}
-
-#slide-show-3 {
-  border: 10px solid blue;
-} */
 
 .slide {
   display: flex;
