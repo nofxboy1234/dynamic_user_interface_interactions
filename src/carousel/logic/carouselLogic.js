@@ -51,9 +51,9 @@ slideShow.addEventListener('transitionend', () => {
   replaceSlideWithPlaceholderSlide();
 
   if (slideIndex > maxIndex) {
-    resetSlideIndex();
     removeAllPlaceholderSlides();
     toggleLastSlideClassOnAllNormalSlides();
+    resetSlideIndex();
     translateSlideShow();
   }
 });
