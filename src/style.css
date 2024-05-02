@@ -78,9 +78,12 @@
   border: 10px solid rgb(0, 0, 0);
 }
 
+.slide-show-transition-translate {
+  transition: translate 0.5s ease-in-out;
+}
+
 #slide-show {
   display: flex;
-  transition: translate 0.5s ease-in-out;
 
   /* width: 1024px; */
 }

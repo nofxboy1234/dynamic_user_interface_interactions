@@ -42,6 +42,10 @@ const toggleLastSlideClassOnAllSlides = () => {
   });
 };
 
+const toggleSlideShowTransitionClass = () => {
+  slideShow.classList.toggle('slide-show-transition-translate');
+};
+
 const translateSlideShow = (value) => {
   slideShow.style.translate = value;
 };
@@ -57,6 +61,7 @@ slideShow.addEventListener('transitionend', () => {
     toggleLastSlideClassOnAllSlides();
     resetSlideIndex();
 
+    toggleSlideShowTransitionClass();
     translateSlideShow('0px');
   }
 });
@@ -65,6 +70,10 @@ const next = function next() {
   slideIndex += 1;
 
   const translateValue = `${-1 * slideIndex * translateDistance}px`;
+
+  if (slideIndex === 1) {
+    toggleSlideShowTransitionClass();
+  }
   translateSlideShow(translateValue);
 };
 
