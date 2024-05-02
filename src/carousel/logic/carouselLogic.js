@@ -55,8 +55,6 @@ slideShow.addEventListener('transitionend', () => {
   replaceSlideWithPlaceholderSlide();
 
   if (slideIndex > maxIndex) {
-    console.log('hello');
-
     removeAllPlaceholderSlides();
     toggleLastSlideClassOnAllSlides();
     resetSlideIndex();
