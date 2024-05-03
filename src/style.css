@@ -109,6 +109,10 @@
   background-color: aqua;
 }
 
+#slide-0-image {
+  content: url('./carousel/images/0.png');
+}
+
 #slide-1 {
   background-color: rgb(162, 0, 255);
 }
