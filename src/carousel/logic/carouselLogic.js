@@ -13,15 +13,7 @@ const slide3 = document.querySelector('#slide-3');
 
 const nextButton = document.querySelector('#next-button');
 
-nextButton.addEventListener('click', () => {
-  console.log('next');
-});
-
 const previousButton = document.querySelector('#previous-button');
-
-previousButton.addEventListener('click', () => {
-  console.log('previous');
-});
 
 const slides = [slide0, slide1, slide2, slide3];
 
@@ -98,6 +90,14 @@ const setAutoAdvance = function setAutoAdvance(delay) {
 
   return intervalID;
 };
+
+nextButton.addEventListener('click', () => {
+  next();
+});
+
+previousButton.addEventListener('click', () => {
+  console.log('previous');
+});
 
 // const previous = function previous() {
 //   slideIndex -= 1;
