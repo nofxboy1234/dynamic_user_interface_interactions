@@ -12,10 +12,11 @@ const slide2 = document.querySelector('#slide-2');
 const slide3 = document.querySelector('#slide-3');
 
 const nextButton = document.querySelector('#next-button');
-
 const previousButton = document.querySelector('#previous-button');
 
 const slides = [slide0, slide1, slide2, slide3];
+
+let transitionState;
 
 const replaceSlideWithPlaceholderSlide = () => {
   const placeholderSlide = document.createElement('div');
@@ -58,7 +59,15 @@ const translateSlideShow = (value) => {
   slideShow.style.translate = value;
 };
 
+slideShow.addEventListener('transitionstart', () => {
+  console.log('transitionstart');
+  transitionState = 'started';
+});
+
 slideShow.addEventListener('transitionend', () => {
+  console.log('transitionend');
+  transitionState = 'ended';
+
   moveLastSlideToEnd();
   replaceSlideWithPlaceholderSlide();
 
@@ -73,6 +82,10 @@ slideShow.addEventListener('transitionend', () => {
 });
 
 const next = function next() {
+  if (transitionState === 'started') {
+    return;
+  }
+
   slideIndex += 1;
 
   const translateValue = `${-1 * slideIndex * translateDistance}px`;
