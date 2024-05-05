@@ -6,4 +6,4 @@ import { next, setAutoAdvance } from './carousel/logic/carouselLogic';
 
 // setupMenus();
 
-setAutoAdvance(1000);
+setAutoAdvance(5000);

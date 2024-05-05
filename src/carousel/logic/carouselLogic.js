@@ -20,6 +20,10 @@ const replaceSlideWithPlaceholderSlide = () => {
 };
 
 const moveLastSlideToEnd = () => {
+  if (slideIndex === 0) {
+    return;
+  }
+
   const slideToAppend = slides.at(slideIndex - 1);
   slideToAppend.classList.toggle('last-slide');
 };
