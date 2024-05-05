@@ -11,6 +11,18 @@ const slide1 = document.querySelector('#slide-1');
 const slide2 = document.querySelector('#slide-2');
 const slide3 = document.querySelector('#slide-3');
 
+const nextButton = document.querySelector('#next-button');
+
+nextButton.addEventListener('click', () => {
+  console.log('next');
+});
+
+const previousButton = document.querySelector('#previous-button');
+
+previousButton.addEventListener('click', () => {
+  console.log('previous');
+});
+
 const slides = [slide0, slide1, slide2, slide3];
 
 const replaceSlideWithPlaceholderSlide = () => {
