@@ -64,6 +64,11 @@
   display: block;
 }
 
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .picture-frame-container {
   display: flex;
   justify-content: center;
@@ -123,4 +128,15 @@
 
 #slide-3 {
   background-color: rgb(0, 255, 98);
+}
+
+#controls {
+  display: flex;
+  justify-content: center;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-between;
+  width: calc(256px + 10px + 10px);
 }
