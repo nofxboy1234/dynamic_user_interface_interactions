@@ -37,13 +37,14 @@ const setAllSlideOrders = function setAllSlideOrders() {
 setAllSlideOrders();
 
 const moveLeftOverflowSlideToEnd = () => {
-  // if (slideIndex === 0) {
-  //   return;
-  // }
-
   const slideToAppend = slides.shift();
   slides.push(slideToAppend);
+  setAllSlideOrders();
+};
 
+const moveRightOverflowSlideToStart = () => {
+  const slideToPrepend = slides.pop();
+  slides.unshift(slideToPrepend);
   setAllSlideOrders();
 };
 
@@ -76,8 +77,16 @@ const moveLeftOverflowSlideToEnd = () => {
 //   });
 // };
 
-const toggleSlideShowTransitionClass = () => {
-  slideShow.classList.toggle('slide-show-transition-translate');
+// const toggleSlideShowTransitionClass = () => {
+//   slideShow.classList.toggle('slide-show-transition-translate');
+// };
+
+const addSlideShowTransitionClass = () => {
+  slideShow.classList.add('slide-show-transition-translate');
+};
+
+const removeSlideShowTransitionClass = () => {
+  slideShow.classList.remove('slide-show-transition-translate');
 };
 
 const translateSlideShow = (value) => {
@@ -94,19 +103,16 @@ slideShow.addEventListener('transitionend', () => {
 
   if (transitionDirection === 'forwards') {
     moveLeftOverflowSlideToEnd();
-    // offset slideshow 1 slide to the right
-    toggleSlideShowTransitionClass();
+
+    removeSlideShowTransitionClass();
     const translateValue = '0px';
     translateSlideShow(translateValue);
+  }
 
-    // addPlaceholderSlideToStart();
-    // if (slideIndex > maxIndex) {
-    //   removeAllPlaceholderSlides();
-    //   toggleLastSlideClassOnAllSlides();
-    //   resetSlideIndex();
-    //   toggleSlideShowTransitionClass();
-    //   translateSlideShow('0px');
-    // }
+  if (transitionDirection === 'backwards') {
+    removeSlideShowTransitionClass();
+    // const translateValue = '0px';
+    // translateSlideShow(translateValue);
   }
 });
 
@@ -120,9 +126,7 @@ const next = function next() {
   // }
 
   transitionDirection = 'forwards';
-
   toggleCircle(slideIndex);
-
   slideIndex += 1;
 
   if (slideIndex > maxIndex) {
@@ -131,12 +135,8 @@ const next = function next() {
 
   toggleCircle(slideIndex);
 
+  addSlideShowTransitionClass();
   const translateValue = `${-1 * translateDistance}px`;
-
-  // if (slideIndex === 1) {
-  //   toggleSlideShowTransitionClass();
-  // }
-  toggleSlideShowTransitionClass();
   translateSlideShow(translateValue);
 };
 
@@ -146,9 +146,7 @@ const previous = function previous() {
   // }
 
   transitionDirection = 'backwards';
-
   toggleCircle(slideIndex);
-
   slideIndex -= 1;
 
   if (slideIndex < minIndex) {
@@ -157,11 +155,14 @@ const previous = function previous() {
 
   toggleCircle(slideIndex);
 
-  const translateValue = `${-1 * slideIndex * translateDistance}px`;
+  moveRightOverflowSlideToStart();
 
-  // if (slideIndex === 1) {
-  //   toggleSlideShowTransitionClass();
-  // }
+  let translateValue;
+  translateValue = `${-1 * translateDistance}px`;
+  translateSlideShow(translateValue);
+
+  translateValue = `${0 * translateDistance}px`;
+  addSlideShowTransitionClass();
   translateSlideShow(translateValue);
 };
 
