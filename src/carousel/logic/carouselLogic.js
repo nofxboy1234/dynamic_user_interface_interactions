@@ -5,23 +5,13 @@ let slideIndex = 0;
 const translateDistance = 256;
 const slideShow = document.querySelector('#slide-show');
 
-const slide0 = document.querySelector('#slide-0');
-const slide1 = document.querySelector('#slide-1');
-const slide2 = document.querySelector('#slide-2');
-const slide3 = document.querySelector('#slide-3');
-
-const jumpCircle0 = document.querySelector('#jump-circle-0');
-const jumpCircle1 = document.querySelector('#jump-circle-1');
-const jumpCircle2 = document.querySelector('#jump-circle-2');
-const jumpCircle3 = document.querySelector('#jump-circle-3');
-
 const nextButton = document.querySelector('#next-button');
 const previousButton = document.querySelector('#previous-button');
 
-const slides = [slide0, slide1, slide2, slide3];
-const jumpCircles = [jumpCircle0, jumpCircle1, jumpCircle2, jumpCircle3];
+// const slides = [...document.querySelectorAll('.slide')];
+const jumpCircles = [...document.querySelectorAll('.jump-circle')];
 
-jumpCircle0.classList.add('jump-circle-filled');
+jumpCircles.at(0).classList.add('jump-circle-filled');
 
 // let transitionState;
 // let transitionDirection;
