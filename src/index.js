@@ -2,7 +2,7 @@ import './style.css';
 
 import { setAutoAdvance } from './carousel/logic/carouselLogic';
 
-// import setupMenus from './dropDownMenu';
+import setupMenus from './dropDownMenu';
 
-// setupMenus();
+setupMenus();
 setAutoAdvance(5000);
