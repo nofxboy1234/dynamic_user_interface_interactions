@@ -66,9 +66,9 @@ jumpCircles.at(0).classList.add('jump-circle-filled');
 //   });
 // };
 
-// const toggleSlideShowTransitionClass = () => {
-//   slideShow.classList.toggle('slide-show-transition-translate');
-// };
+const toggleSlideShowTransitionClass = () => {
+  slideShow.classList.toggle('slide-show-transition-translate');
+};
 
 const translateSlideShow = (value) => {
   slideShow.style.translate = value;
@@ -185,5 +185,7 @@ jumpCircles.forEach((circle, circleIndex) => {
     jump(circleIndex);
   });
 });
+
+toggleSlideShowTransitionClass();
 
 export { setAutoAdvance };
