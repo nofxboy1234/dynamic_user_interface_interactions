@@ -76,7 +76,7 @@
 
 .picture-frame {
   display: flex;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   width: calc(256px + 10px + 10px);
   height: calc(256px + 10px + 10px);
@@ -101,13 +101,22 @@
   font-size: 10rem;
 }
 
-.placeholder-slide {
+.placeholder-slide-start {
   order: -1;
   background-color: rgb(158, 158, 158);
 }
 
 .last-slide {
   order: 1;
+}
+
+.placeholder-slide-end {
+  order: 1;
+  background-color: rgb(158, 158, 158);
+}
+
+.first-slide {
+  order: -1;
 }
 
 #slide-0 {
@@ -139,4 +148,9 @@
   display: flex;
   justify-content: space-between;
   width: calc(256px + 10px + 10px);
+}
+
+.control-button {
+  width: 40px;
+  height: 40px;
 }

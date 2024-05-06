@@ -2,7 +2,6 @@ const minIndex = 0;
 const maxIndex = 3;
 
 let slideIndex = 0;
-// const translateX = [0, -256 * 1, -256 * 2, -256 * 3, -256 * 4];
 const translateDistance = 256;
 const slideShow = document.querySelector('#slide-show');
 
@@ -16,115 +15,153 @@ const previousButton = document.querySelector('#previous-button');
 
 const slides = [slide0, slide1, slide2, slide3];
 
-let transitionState;
+// let transitionState;
+// let transitionDirection;
 
-const replaceSlideWithPlaceholderSlide = () => {
-  const placeholderSlide = document.createElement('div');
-  placeholderSlide.classList.add('slide', 'placeholder-slide');
-  slideShow.appendChild(placeholderSlide);
-};
+// const addPlaceholderSlideToStart = () => {
+//   const placeholderSlide = document.createElement('div');
+//   placeholderSlide.classList.add('slide', 'placeholder-slide-start');
+//   slideShow.appendChild(placeholderSlide);
+// };
 
-const moveLastSlideToEnd = () => {
-  if (slideIndex === 0) {
-    return;
-  }
+// const addPlaceholderSlideToEnd = () => {
+//   const placeholderSlide = document.createElement('div');
+//   placeholderSlide.classList.add('slide', 'placeholder-slide-end');
+//   slideShow.appendChild(placeholderSlide);
+// };
 
-  const slideToAppend = slides.at(slideIndex - 1);
-  slideToAppend.classList.toggle('last-slide');
-};
+// const moveLeftOverflowSlideToEnd = () => {
+//   if (slideIndex === 0) {
+//     return;
+//   }
 
-const removeAllPlaceholderSlides = () => {
-  const placeholderSlides = document.querySelectorAll('.placeholder-slide');
-  placeholderSlides.forEach((element) => {
-    element.remove();
-  });
-};
+//   const slideToAppend = slides.at(slideIndex - 1);
+//   slideToAppend.classList.toggle('last-slide');
+// };
 
-const resetSlideIndex = () => {
-  slideIndex = minIndex;
-};
+// const moveRightOverflowSlideToStart = () => {
+//   if (slideIndex === 3) {
+//     return;
+//   }
 
-const toggleLastSlideClassOnAllSlides = () => {
-  const normalSlides = document.querySelectorAll('.slide');
-  normalSlides.forEach((element) => {
-    element.classList.toggle('last-slide');
-  });
-};
+//   const slideToPrepend = slides.at(-1);
+//   slideToPrepend.classList.toggle('first-slide');
+// };
 
-const toggleSlideShowTransitionClass = () => {
-  slideShow.classList.toggle('slide-show-transition-translate');
-};
+// const removeAllPlaceholderSlides = () => {
+//   const placeholderSlides = document.querySelectorAll(
+//     '.placeholder-slide-start',
+//   );
+//   placeholderSlides.forEach((element) => {
+//     element.remove();
+//   });
+// };
+
+// const resetSlideIndex = () => {
+//   slideIndex = minIndex;
+// };
+
+// const toggleLastSlideClassOnAllSlides = () => {
+//   const normalSlides = document.querySelectorAll('.slide');
+//   normalSlides.forEach((element) => {
+//     element.classList.toggle('last-slide');
+//   });
+// };
+
+// const toggleSlideShowTransitionClass = () => {
+//   slideShow.classList.toggle('slide-show-transition-translate');
+// };
 
 const translateSlideShow = (value) => {
   slideShow.style.translate = value;
 };
 
-slideShow.addEventListener('transitionstart', () => {
-  console.log('transitionstart');
-  transitionState = 'started';
-});
+// slideShow.addEventListener('transitionstart', () => {
+//   console.log('transitionstart');
+//   transitionState = 'started';
+// });
 
-slideShow.addEventListener('transitionend', () => {
-  console.log('transitionend');
-  transitionState = 'ended';
+// slideShow.addEventListener('transitionend', () => {
+//   console.log('transitionend');
+//   transitionState = 'ended';
 
-  moveLastSlideToEnd();
-  replaceSlideWithPlaceholderSlide();
+//   if (transitionDirection === 'forwards') {
+//     moveLeftOverflowSlideToEnd();
+//     addPlaceholderSlideToStart();
 
-  if (slideIndex > maxIndex) {
-    removeAllPlaceholderSlides();
-    toggleLastSlideClassOnAllSlides();
-    resetSlideIndex();
+//     if (slideIndex > maxIndex) {
+//       removeAllPlaceholderSlides();
+//       toggleLastSlideClassOnAllSlides();
+//       resetSlideIndex();
 
-    toggleSlideShowTransitionClass();
-    translateSlideShow('0px');
-  }
-});
+//       toggleSlideShowTransitionClass();
+//       translateSlideShow('0px');
+//     }
+//   }
+// });
 
 const next = function next() {
-  if (transitionState === 'started') {
-    return;
-  }
+  // if (transitionState === 'started') {
+  //   return;
+  // }
 
+  // transitionDirection = 'forwards';
   slideIndex += 1;
+
+  if (slideIndex > maxIndex) {
+    slideIndex = minIndex;
+  }
 
   const translateValue = `${-1 * slideIndex * translateDistance}px`;
 
-  if (slideIndex === 1) {
-    toggleSlideShowTransitionClass();
-  }
+  // if (slideIndex === 1) {
+  //   toggleSlideShowTransitionClass();
+  // }
   translateSlideShow(translateValue);
 };
 
-const setAutoAdvance = function setAutoAdvance(delay) {
-  const intervalID = setInterval(() => {
-    next();
-  }, delay);
+const previous = function previous() {
+  // if (transitionState === 'started') {
+  //   return;
+  // }
 
-  return intervalID;
+  // transitionDirection = 'forwards';
+  slideIndex -= 1;
+
+  if (slideIndex < minIndex) {
+    slideIndex = maxIndex;
+  }
+
+  const translateValue = `${-1 * slideIndex * translateDistance}px`;
+
+  // if (slideIndex === 1) {
+  //   toggleSlideShowTransitionClass();
+  // }
+  translateSlideShow(translateValue);
 };
+
+// const setAutoAdvance = function setAutoAdvance(delay) {
+//   const intervalID = setInterval(() => {
+//     next();
+//   }, delay);
+
+//   return intervalID;
+// };
 
 nextButton.addEventListener('click', () => {
   next();
 });
 
 previousButton.addEventListener('click', () => {
-  console.log('previous');
+  previous();
 });
 
-// const previous = function previous() {
-//   slideIndex -= 1;
+const jump = function jump(index) {
+  slideIndex = index;
 
-//   if (slideIndex < minIndex) {
-//     slideIndex = maxIndex;
-//   }
+  const translateValue = `${-1 * slideIndex * translateDistance}px`;
 
-//   slideShowLeft.style.transform = `translateX(${translateX.at(slideIndex)}px)`;
-// };
+  translateSlideShow(translateValue);
+};
 
-// const jump = function jump(index) {
-//   slideIndex = index;
-//   slideShowLeft.style.transform = `translateX(${translateX.at(slideIndex)}px)`;
-// };
-
-export { next, setAutoAdvance };
+export { next };
