@@ -152,13 +152,13 @@ const previous = function previous() {
   translateSlideShow(translateValue);
 };
 
-// const setAutoAdvance = function setAutoAdvance(delay) {
-//   const intervalID = setInterval(() => {
-//     next();
-//   }, delay);
+const setAutoAdvance = function setAutoAdvance(delay) {
+  const intervalID = setInterval(() => {
+    next();
+  }, delay);
 
-//   return intervalID;
-// };
+  return intervalID;
+};
 
 nextButton.addEventListener('click', () => {
   next();
@@ -186,4 +186,4 @@ jumpCircles.forEach((circle, circleIndex) => {
   });
 });
 
-export { next };
+export { setAutoAdvance };
