@@ -10,10 +10,18 @@ const slide1 = document.querySelector('#slide-1');
 const slide2 = document.querySelector('#slide-2');
 const slide3 = document.querySelector('#slide-3');
 
+const jumpCircle0 = document.querySelector('#jump-circle-0');
+const jumpCircle1 = document.querySelector('#jump-circle-1');
+const jumpCircle2 = document.querySelector('#jump-circle-2');
+const jumpCircle3 = document.querySelector('#jump-circle-3');
+
 const nextButton = document.querySelector('#next-button');
 const previousButton = document.querySelector('#previous-button');
 
 const slides = [slide0, slide1, slide2, slide3];
+const jumpCircles = [jumpCircle0, jumpCircle1, jumpCircle2, jumpCircle3];
+
+jumpCircle0.classList.add('jump-circle-filled');
 
 // let transitionState;
 // let transitionDirection;
@@ -100,17 +108,26 @@ const translateSlideShow = (value) => {
 //   }
 // });
 
+const toggleCircle = function toggleCircle(circleIndex) {
+  jumpCircles.at(circleIndex).classList.toggle('jump-circle-filled');
+};
+
 const next = function next() {
   // if (transitionState === 'started') {
   //   return;
   // }
 
   // transitionDirection = 'forwards';
+
+  toggleCircle(slideIndex);
+
   slideIndex += 1;
 
   if (slideIndex > maxIndex) {
     slideIndex = minIndex;
   }
+
+  toggleCircle(slideIndex);
 
   const translateValue = `${-1 * slideIndex * translateDistance}px`;
 
@@ -126,11 +143,16 @@ const previous = function previous() {
   // }
 
   // transitionDirection = 'forwards';
+
+  toggleCircle(slideIndex);
+
   slideIndex -= 1;
 
   if (slideIndex < minIndex) {
     slideIndex = maxIndex;
   }
+
+  toggleCircle(slideIndex);
 
   const translateValue = `${-1 * slideIndex * translateDistance}px`;
 
@@ -163,5 +185,15 @@ const jump = function jump(index) {
 
   translateSlideShow(translateValue);
 };
+
+jumpCircles.forEach((circle, circleIndex) => {
+  circle.addEventListener('click', () => {
+    toggleCircle(slideIndex);
+    slideIndex = circleIndex;
+    toggleCircle(slideIndex);
+
+    jump(circleIndex);
+  });
+});
 
 export { next };
