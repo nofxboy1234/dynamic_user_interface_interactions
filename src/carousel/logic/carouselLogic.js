@@ -140,6 +140,13 @@ const next = function next() {
   translateSlideShow(translateValue);
 };
 
+const setupPrevious = function setupPrevious() {
+  moveRightOverflowSlideToStart();
+
+  const translateValue = `${-1 * translateDistance}px`;
+  translateSlideShow(translateValue);
+};
+
 const previous = function previous() {
   // if (transitionState === 'started') {
   //   return;
@@ -155,14 +162,8 @@ const previous = function previous() {
 
   toggleCircle(slideIndex);
 
-  moveRightOverflowSlideToStart();
-
-  let translateValue;
-  translateValue = `${-1 * translateDistance}px`;
-  translateSlideShow(translateValue);
-
-  translateValue = `${0 * translateDistance}px`;
   addSlideShowTransitionClass();
+  const translateValue = `${0 * translateDistance}px`;
   translateSlideShow(translateValue);
 };
 
@@ -176,6 +177,10 @@ const setAutoAdvance = function setAutoAdvance(delay) {
 
 nextButton.addEventListener('click', () => {
   next();
+});
+
+previousButton.addEventListener('click', () => {
+  setupPrevious();
 });
 
 previousButton.addEventListener('click', () => {
