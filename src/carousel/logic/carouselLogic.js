@@ -8,13 +8,13 @@ const slideShow = document.querySelector('#slide-show');
 const nextButton = document.querySelector('#next-button');
 const previousButton = document.querySelector('#previous-button');
 
-// const slides = [...document.querySelectorAll('.slide')];
+const slides = [...document.querySelectorAll('.slide')];
 const jumpCircles = [...document.querySelectorAll('.jump-circle')];
 
 jumpCircles.at(0).classList.add('jump-circle-filled');
 
 // let transitionState;
-// let transitionDirection;
+let transitionDirection;
 
 // const addPlaceholderSlideToStart = () => {
 //   const placeholderSlide = document.createElement('div');
@@ -28,14 +28,24 @@ jumpCircles.at(0).classList.add('jump-circle-filled');
 //   slideShow.appendChild(placeholderSlide);
 // };
 
-// const moveLeftOverflowSlideToEnd = () => {
-//   if (slideIndex === 0) {
-//     return;
-//   }
+const setAllSlideOrders = function setAllSlideOrders() {
+  slides.forEach((slide, index) => {
+    slide.style.order = `${index}`;
+  });
+};
 
-//   const slideToAppend = slides.at(slideIndex - 1);
-//   slideToAppend.classList.toggle('last-slide');
-// };
+setAllSlideOrders();
+
+const moveLeftOverflowSlideToEnd = () => {
+  // if (slideIndex === 0) {
+  //   return;
+  // }
+
+  const slideToAppend = slides.shift();
+  slides.push(slideToAppend);
+
+  setAllSlideOrders();
+};
 
 // const moveRightOverflowSlideToStart = () => {
 //   if (slideIndex === 3) {
@@ -79,24 +89,26 @@ const translateSlideShow = (value) => {
 //   transitionState = 'started';
 // });
 
-// slideShow.addEventListener('transitionend', () => {
-//   console.log('transitionend');
-//   transitionState = 'ended';
+slideShow.addEventListener('transitionend', () => {
+  // transitionState = 'ended';
 
-//   if (transitionDirection === 'forwards') {
-//     moveLeftOverflowSlideToEnd();
-//     addPlaceholderSlideToStart();
+  if (transitionDirection === 'forwards') {
+    moveLeftOverflowSlideToEnd();
+    // offset slideshow 1 slide to the right
+    toggleSlideShowTransitionClass();
+    const translateValue = '0px';
+    translateSlideShow(translateValue);
 
-//     if (slideIndex > maxIndex) {
-//       removeAllPlaceholderSlides();
-//       toggleLastSlideClassOnAllSlides();
-//       resetSlideIndex();
-
-//       toggleSlideShowTransitionClass();
-//       translateSlideShow('0px');
-//     }
-//   }
-// });
+    // addPlaceholderSlideToStart();
+    // if (slideIndex > maxIndex) {
+    //   removeAllPlaceholderSlides();
+    //   toggleLastSlideClassOnAllSlides();
+    //   resetSlideIndex();
+    //   toggleSlideShowTransitionClass();
+    //   translateSlideShow('0px');
+    // }
+  }
+});
 
 const toggleCircle = function toggleCircle(circleIndex) {
   jumpCircles.at(circleIndex).classList.toggle('jump-circle-filled');
@@ -107,7 +119,7 @@ const next = function next() {
   //   return;
   // }
 
-  // transitionDirection = 'forwards';
+  transitionDirection = 'forwards';
 
   toggleCircle(slideIndex);
 
@@ -119,11 +131,12 @@ const next = function next() {
 
   toggleCircle(slideIndex);
 
-  const translateValue = `${-1 * slideIndex * translateDistance}px`;
+  const translateValue = `${-1 * translateDistance}px`;
 
   // if (slideIndex === 1) {
   //   toggleSlideShowTransitionClass();
   // }
+  toggleSlideShowTransitionClass();
   translateSlideShow(translateValue);
 };
 
@@ -132,7 +145,7 @@ const previous = function previous() {
   //   return;
   // }
 
-  // transitionDirection = 'forwards';
+  transitionDirection = 'backwards';
 
   toggleCircle(slideIndex);
 
@@ -185,7 +198,5 @@ jumpCircles.forEach((circle, circleIndex) => {
     jump(circleIndex);
   });
 });
-
-toggleSlideShowTransitionClass();
 
 export { setAutoAdvance };
