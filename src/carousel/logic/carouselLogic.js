@@ -3,6 +3,8 @@ const maxIndex = 3;
 
 let slideIndex = 0;
 const translateDistance = 256;
+
+const slideShowHolder = document.querySelector('#slide-show-holder');
 const slideShow = document.querySelector('#slide-show');
 
 const nextButton = document.querySelector('#next-button');
@@ -89,6 +91,10 @@ const removeSlideShowTransitionClass = () => {
   slideShow.classList.remove('slide-show-transition-translate');
 };
 
+const translateSlideShowHolder = (value) => {
+  slideShowHolder.style.translate = value;
+};
+
 const translateSlideShow = (value) => {
   slideShow.style.translate = value;
 };
@@ -111,8 +117,12 @@ slideShow.addEventListener('transitionend', () => {
 
   if (transitionDirection === 'backwards') {
     removeSlideShowTransitionClass();
-    // const translateValue = '0px';
-    // translateSlideShow(translateValue);
+
+    let translateValue = '0px';
+    translateSlideShowHolder(translateValue);
+
+    translateValue = '0px';
+    translateSlideShow(translateValue);
   }
 });
 
@@ -144,7 +154,7 @@ const setupPrevious = function setupPrevious() {
   moveRightOverflowSlideToStart();
 
   const translateValue = `${-1 * translateDistance}px`;
-  translateSlideShow(translateValue);
+  translateSlideShowHolder(translateValue);
 };
 
 const previous = function previous() {
@@ -163,7 +173,7 @@ const previous = function previous() {
   toggleCircle(slideIndex);
 
   addSlideShowTransitionClass();
-  const translateValue = `${0 * translateDistance}px`;
+  const translateValue = `${1 * translateDistance}px`;
   translateSlideShow(translateValue);
 };
 
