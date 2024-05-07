@@ -15,7 +15,7 @@ const jumpCircles = [...document.querySelectorAll('.jump-circle')];
 
 jumpCircles.at(0).classList.add('jump-circle-filled');
 
-// let transitionState;
+let transitionState;
 let transitionDirection;
 
 // const addPlaceholderSlideToStart = () => {
@@ -99,13 +99,12 @@ const translateSlideShow = (value) => {
   slideShow.style.translate = value;
 };
 
-// slideShow.addEventListener('transitionstart', () => {
-//   console.log('transitionstart');
-//   transitionState = 'started';
-// });
+slideShow.addEventListener('transitionstart', () => {
+  transitionState = 'started';
+});
 
 slideShow.addEventListener('transitionend', () => {
-  // transitionState = 'ended';
+  transitionState = 'ended';
 
   if (transitionDirection === 'forwards') {
     moveLeftOverflowSlideToEnd();
@@ -131,9 +130,9 @@ const toggleCircle = function toggleCircle(circleIndex) {
 };
 
 const next = function next() {
-  // if (transitionState === 'started') {
-  //   return;
-  // }
+  if (transitionState === 'started') {
+    return;
+  }
 
   transitionDirection = 'forwards';
   toggleCircle(slideIndex);
@@ -151,6 +150,10 @@ const next = function next() {
 };
 
 const setupPrevious = function setupPrevious() {
+  if (transitionState === 'started') {
+    return;
+  }
+
   moveRightOverflowSlideToStart();
 
   const translateValue = `${-1 * translateDistance}px`;
@@ -158,9 +161,9 @@ const setupPrevious = function setupPrevious() {
 };
 
 const previous = function previous() {
-  // if (transitionState === 'started') {
-  //   return;
-  // }
+  if (transitionState === 'started') {
+    return;
+  }
 
   transitionDirection = 'backwards';
   toggleCircle(slideIndex);
