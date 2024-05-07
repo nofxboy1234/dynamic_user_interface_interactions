@@ -192,6 +192,31 @@ const jumpForwards = function jumpForwards(targetIndex) {
   translateSlideShow(translateValue);
 };
 
+const jumpBackwards = function jumpBackwards(targetIndex) {
+  if (transitionState === 'started') {
+    return;
+  }
+
+  moveRightmostOverflowSlidesToStart();
+
+  let translateValue = `${-1 * jumpDifference * translateDistance}px`;
+  translateSlideShowHolder(translateValue);
+
+  transitionDirection = 'backwards';
+  toggleCircle(slideIndex);
+  slideIndex = targetIndex;
+
+  if (slideIndex > maxIndex) {
+    slideIndex = minIndex;
+  }
+
+  toggleCircle(slideIndex);
+
+  addSlideShowTransitionClass();
+  translateValue = `${1 * jumpDifference * translateDistance}px`;
+  translateSlideShow(translateValue);
+};
+
 const jump = function jump(targetIndex) {
   const indexDifference = targetIndex - slideIndex;
   const direction = Math.sign(indexDifference);
@@ -202,17 +227,11 @@ const jump = function jump(targetIndex) {
   }
 
   if (direction < 0) {
-    for (let index = 0; index < jumpDifference; index++) {
-      setupPrevious();
-      previous();
-    }
+    jumpBackwards(targetIndex);
   }
 
   if (direction > 0) {
     jumpForwards(targetIndex);
-    // for (let index = 0; index < absDifference; index++) {
-    //   next();
-    // }
   }
 };
 
