@@ -15,6 +15,8 @@ const jumpCircles = [...document.querySelectorAll('.jump-circle')];
 
 jumpCircles.at(0).classList.add('jump-circle-filled');
 
+let jumpDifference;
+
 let transitionState;
 let transitionDirection;
 
@@ -38,50 +40,17 @@ const setAllSlideOrders = function setAllSlideOrders() {
 
 setAllSlideOrders();
 
-const moveLeftOverflowSlideToEnd = () => {
-  const slideToAppend = slides.shift();
-  slides.push(slideToAppend);
+const moveLeftmostOverflowSlidesToEnd = () => {
+  const slidesToAppend = slides.splice(0, jumpDifference);
+  slides.push(...slidesToAppend);
   setAllSlideOrders();
 };
 
-const moveRightOverflowSlideToStart = () => {
-  const slideToPrepend = slides.pop();
-  slides.unshift(slideToPrepend);
+const moveRightmostOverflowSlidesToStart = () => {
+  const slidesToPrepend = slides.splice(-1 * jumpDifference);
+  slides.unshift(...slidesToPrepend);
   setAllSlideOrders();
 };
-
-// const moveRightOverflowSlideToStart = () => {
-//   if (slideIndex === 3) {
-//     return;
-//   }
-
-//   const slideToPrepend = slides.at(-1);
-//   slideToPrepend.classList.toggle('first-slide');
-// };
-
-// const removeAllPlaceholderSlides = () => {
-//   const placeholderSlides = document.querySelectorAll(
-//     '.placeholder-slide-start',
-//   );
-//   placeholderSlides.forEach((element) => {
-//     element.remove();
-//   });
-// };
-
-// const resetSlideIndex = () => {
-//   slideIndex = minIndex;
-// };
-
-// const toggleLastSlideClassOnAllSlides = () => {
-//   const normalSlides = document.querySelectorAll('.slide');
-//   normalSlides.forEach((element) => {
-//     element.classList.toggle('last-slide');
-//   });
-// };
-
-// const toggleSlideShowTransitionClass = () => {
-//   slideShow.classList.toggle('slide-show-transition-translate');
-// };
 
 const addSlideShowTransitionClass = () => {
   slideShow.classList.add('slide-show-transition-translate');
@@ -107,9 +76,10 @@ slideShow.addEventListener('transitionend', () => {
   transitionState = 'ended';
 
   if (transitionDirection === 'forwards') {
-    moveLeftOverflowSlideToEnd();
+    moveLeftmostOverflowSlidesToEnd();
 
     removeSlideShowTransitionClass();
+
     const translateValue = '0px';
     translateSlideShow(translateValue);
   }
@@ -134,6 +104,7 @@ const next = function next() {
     return;
   }
 
+  jumpDifference = 1;
   transitionDirection = 'forwards';
   toggleCircle(slideIndex);
   slideIndex += 1;
@@ -154,7 +125,8 @@ const setupPrevious = function setupPrevious() {
     return;
   }
 
-  moveRightOverflowSlideToStart();
+  jumpDifference = 1;
+  moveRightmostOverflowSlidesToStart();
 
   const translateValue = `${-1 * translateDistance}px`;
   translateSlideShowHolder(translateValue);
@@ -200,19 +172,54 @@ previousButton.addEventListener('click', () => {
   previous();
 });
 
-const jump = function jump(index) {
-  slideIndex = index;
+const jumpForwards = function jumpForwards(targetIndex) {
+  if (transitionState === 'started') {
+    return;
+  }
 
-  const translateValue = `${-1 * slideIndex * translateDistance}px`;
+  transitionDirection = 'forwards';
+  toggleCircle(slideIndex);
+  slideIndex = targetIndex;
 
+  if (slideIndex > maxIndex) {
+    slideIndex = minIndex;
+  }
+
+  toggleCircle(slideIndex);
+
+  addSlideShowTransitionClass();
+  const translateValue = `${-1 * jumpDifference * translateDistance}px`;
   translateSlideShow(translateValue);
+};
+
+const jump = function jump(targetIndex) {
+  const indexDifference = targetIndex - slideIndex;
+  const direction = Math.sign(indexDifference);
+  jumpDifference = Math.abs(indexDifference);
+
+  if (direction === 0) {
+    return;
+  }
+
+  if (direction < 0) {
+    for (let index = 0; index < jumpDifference; index++) {
+      setupPrevious();
+      previous();
+    }
+  }
+
+  if (direction > 0) {
+    jumpForwards(targetIndex);
+    // for (let index = 0; index < absDifference; index++) {
+    //   next();
+    // }
+  }
 };
 
 jumpCircles.forEach((circle, circleIndex) => {
   circle.addEventListener('click', () => {
-    toggleCircle(slideIndex);
-    slideIndex = circleIndex;
-    toggleCircle(slideIndex);
+    // toggleCircle(slideIndex);
+    // toggleCircle(circleIndex);
 
     jump(circleIndex);
   });

@@ -76,7 +76,7 @@
 
 .picture-frame {
   display: flex;
-  /* overflow: hidden; */
+  overflow: hidden;
 
   width: calc(256px + 10px + 10px);
   height: calc(256px + 10px + 10px);
