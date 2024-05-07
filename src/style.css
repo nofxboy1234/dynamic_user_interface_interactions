@@ -157,26 +157,22 @@
   order: 3;
 }
 
-#controls {
+#controls-container {
   display: flex;
   justify-content: center;
 }
 
-#buttons {
+#controls {
   display: flex;
-  justify-content: space-between;
   width: calc(256px + 10px + 10px);
+  justify-content: space-between;
+  align-items: center;
 }
 
 .control-button {
   width: 50px;
   height: 50px;
   cursor: pointer;
-}
-
-#circles {
-  display: flex;
-  align-items: center;
 }
 
 .jump-circle {
